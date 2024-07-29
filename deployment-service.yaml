@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: boardgame
-          image: adijaiswal/boardgame:latest # Image that will be used to containers in the cluster
+          image: gokulgv/boardgame:latest # Image that will be used to containers in the cluster
           imagePullPolicy: Always
           ports:
             - containerPort: 8080 # The port that the container is running on in the cluster
@@ -29,6 +29,13 @@ metadata: # Metadata of the resource kind we are creating
 spec:
   selector:
     app: boardgame
+  ports:
+      protocol: "TCP"
+      port: 8080 #the port the survice is running in the cluster
+      targetport: 8080 #the port exposed by the service 
+  type: Loadbalancer #type of the service
+      
+      
   ports:
     - protocol: "TCP"
       port: 8080 
